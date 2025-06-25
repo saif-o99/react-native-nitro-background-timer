@@ -1,6 +1,6 @@
 {
   "name": "react-native-nitro-background-timer",
-  "version": "0.0.1",
+  "version": "0.0.12",
   "description": "react-native-nitro-background-timer",
   "main": "lib/index",
   "module": "lib/index",
@@ -41,14 +41,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mrousavy/nitro.git"
+    "url": "git+https://github.com/saif-o99/react-native-nitro-background-timer.git"
   },
   "author": "Saif Eideh",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mrousavy/nitro/issues"
+    "url": "https://github.com/saif-o99/react-native-nitro-background-timer/issues"
   },
-  "homepage": "https://github.com/mrousavy/nitro#readme",
+  "homepage": "https://github.com/saif-o99/react-native-nitro-background-timer#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
