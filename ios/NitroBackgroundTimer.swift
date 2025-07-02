@@ -1,53 +1,53 @@
 import Foundation
-import React
 
-@objc(NitroBackgroundTimer)
-class NitroBackgroundTimer: NSObject, HybridNitroBackgroundTimerSpec {
+public class NitroBackgroundTimer: HybridNitroBackgroundTimerSpec {
   private var timeoutTimers: [Int: Timer] = [:]
   private var intervalTimers: [Int: Timer] = [:]
   private var callbackQueue = DispatchQueue.main
   private var nextTimerId = 0
 
-  @objc(setTimeout:duration:callback:)
-  func setTimeout(id: NSNumber, duration: NSNumber, callback: @escaping RCTResponseSenderBlock) {
-    let timer = Timer.scheduledTimer(withTimeInterval: duration.doubleValue / 1000.0, repeats: false) { _ in
+
+  public func setTimeout(id: Double, duration: Double, callback: @escaping (Double) -> Void) throws -> Double {
+    let intId = Int(id)
+    let timer = Timer.scheduledTimer(withTimeInterval: duration / 1000.0, repeats: false) { _ in
       self.callbackQueue.async {
-        callback([id])
-        self.timeoutTimers.removeValue(forKey: id.intValue)
+        callback(id)
+        self.timeoutTimers.removeValue(forKey: intId)
       }
     }
     RunLoop.main.add(timer, forMode: .common)
-    timeoutTimers[id.intValue] = timer
+    timeoutTimers[intId] = timer
+    return id
   }
 
-  @objc(clearTimeout:)
-  func clearTimeout(id: NSNumber) {
-    if let timer = timeoutTimers[id.intValue] {
+
+  public func clearTimeout(id: Double) throws {
+    let intId = Int(id)
+    if let timer = timeoutTimers[intId] {
       timer.invalidate()
-      timeoutTimers.removeValue(forKey: id.intValue)
+      timeoutTimers.removeValue(forKey: intId)
     }
   }
 
-  @objc(setInterval:interval:callback:)
-  func setInterval(id: NSNumber, interval: NSNumber, callback: @escaping RCTResponseSenderBlock) {
-    let timer = Timer.scheduledTimer(withTimeInterval: interval.doubleValue / 1000.0, repeats: true) { _ in
+
+  public func setInterval(id: Double, interval: Double, callback: @escaping (Double) -> Void) throws -> Double {
+    let intId = Int(id)
+    let timer = Timer.scheduledTimer(withTimeInterval: interval / 1000.0, repeats: true) { _ in
       self.callbackQueue.async {
-        callback([id])
+        callback(id)
       }
     }
     RunLoop.main.add(timer, forMode: .common)
-    intervalTimers[id.intValue] = timer
+    intervalTimers[intId] = timer
+    return id
   }
 
-  @objc(clearInterval:)
-  func clearInterval(id: NSNumber) {
-    if let timer = intervalTimers[id.intValue] {
+  public func clearInterval(id: Double) throws {
+    let intId = Int(id)
+    if let timer = intervalTimers[intId] {
       timer.invalidate()
-      intervalTimers.removeValue(forKey: id.intValue)
+      intervalTimers.removeValue(forKey: intId)
     }
   }
 
-  @objc static func requiresMainQueueSetup() -> Bool {
-    return true
-  }
 }
