@@ -29,6 +29,11 @@ namespace margelo::nitro::nitrobackgroundtimer {
     return method(_javaPart);
   }
 
+  void JHybridNitroBackgroundTimerSpec::dispose() noexcept {
+    static const auto method = javaClassStatic()->getMethod<void()>("dispose");
+    method(_javaPart);
+  }
+
   // Properties
   
 

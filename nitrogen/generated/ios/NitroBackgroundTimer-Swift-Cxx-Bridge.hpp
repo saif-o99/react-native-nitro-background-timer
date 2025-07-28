@@ -38,13 +38,13 @@ namespace margelo::nitro::nitrobackgroundtimer::bridge::swift {
    */
   class Func_void_double_Wrapper final {
   public:
-    explicit Func_void_double_Wrapper(std::function<void(double /* nativeId */)>&& func): _function(std::make_shared<std::function<void(double /* nativeId */)>>(std::move(func))) {}
+    explicit Func_void_double_Wrapper(std::function<void(double /* nativeId */)>&& func): _function(std::make_unique<std::function<void(double /* nativeId */)>>(std::move(func))) {}
     inline void call(double nativeId) const {
       _function->operator()(nativeId);
     }
   private:
-    std::shared_ptr<std::function<void(double /* nativeId */)>> _function;
-  };
+    std::unique_ptr<std::function<void(double /* nativeId */)>> _function;
+  } SWIFT_NONCOPYABLE;
   Func_void_double create_Func_void_double(void* _Nonnull swiftClosureWrapper);
   inline Func_void_double_Wrapper wrap_Func_void_double(Func_void_double value) {
     return Func_void_double_Wrapper(std::move(value));
