@@ -1,4 +1,5 @@
 import Foundation
+import NitroModules
 
 public class NitroBackgroundTimer: HybridNitroBackgroundTimerSpec {
   private var timeoutTimers: [Int: Timer] = [:]
