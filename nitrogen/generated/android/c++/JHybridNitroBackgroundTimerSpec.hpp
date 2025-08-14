@@ -29,6 +29,7 @@ namespace margelo::nitro::nitrobackgroundtimer {
     // C++ constructor (called from Java via `initHybrid()`)
     explicit JHybridNitroBackgroundTimerSpec(jni::alias_ref<jhybridobject> jThis) :
       HybridObject(HybridNitroBackgroundTimerSpec::TAG),
+      HybridBase(jThis),
       _javaPart(jni::make_global(jThis)) {}
 
   public:

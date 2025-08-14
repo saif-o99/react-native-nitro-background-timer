@@ -24,7 +24,7 @@
   HybridObjectRegistry::registerHybridObjectConstructor(
     "NitroBackgroundTimer",
     []() -> std::shared_ptr<HybridObject> {
-      std::shared_ptr<margelo::nitro::nitrobackgroundtimer::HybridNitroBackgroundTimerSpec> hybridObject = NitroBackgroundTimer::NitroBackgroundTimerAutolinking::createNitroBackgroundTimer();
+      std::shared_ptr<HybridNitroBackgroundTimerSpec> hybridObject = NitroBackgroundTimer::NitroBackgroundTimerAutolinking::createNitroBackgroundTimer();
       return hybridObject;
     }
   );

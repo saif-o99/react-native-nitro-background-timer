@@ -17,7 +17,6 @@
 
 #include "JHybridNitroBackgroundTimerSpec.hpp"
 #include "JFunc_void_double.hpp"
-#include <NitroModules/JNISharedPtr.hpp>
 #include <NitroModules/DefaultConstructableObject.hpp>
 
 namespace margelo::nitro::nitrobackgroundtimer {
@@ -39,7 +38,7 @@ int initialize(JavaVM* vm) {
         static DefaultConstructableObject<JHybridNitroBackgroundTimerSpec::javaobject> object("com/margelo/nitro/nitrobackgroundtimer/NitroBackgroundTimer");
         auto instance = object.create();
         auto globalRef = jni::make_global(instance);
-        return JNISharedPtr::make_shared_from_jni<JHybridNitroBackgroundTimerSpec>(globalRef);
+        return globalRef->cthis()->shared();
       }
     );
   });

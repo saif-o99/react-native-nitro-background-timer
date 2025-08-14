@@ -50,17 +50,17 @@ namespace margelo::nitro::nitrobackgroundtimer::bridge::swift {
     return Func_void_double_Wrapper(std::move(value));
   }
   
-  // pragma MARK: std::shared_ptr<margelo::nitro::nitrobackgroundtimer::HybridNitroBackgroundTimerSpec>
+  // pragma MARK: std::shared_ptr<HybridNitroBackgroundTimerSpec>
   /**
-   * Specialized version of `std::shared_ptr<margelo::nitro::nitrobackgroundtimer::HybridNitroBackgroundTimerSpec>`.
+   * Specialized version of `std::shared_ptr<HybridNitroBackgroundTimerSpec>`.
    */
-  using std__shared_ptr_margelo__nitro__nitrobackgroundtimer__HybridNitroBackgroundTimerSpec_ = std::shared_ptr<margelo::nitro::nitrobackgroundtimer::HybridNitroBackgroundTimerSpec>;
-  std::shared_ptr<margelo::nitro::nitrobackgroundtimer::HybridNitroBackgroundTimerSpec> create_std__shared_ptr_margelo__nitro__nitrobackgroundtimer__HybridNitroBackgroundTimerSpec_(void* _Nonnull swiftUnsafePointer);
-  void* _Nonnull get_std__shared_ptr_margelo__nitro__nitrobackgroundtimer__HybridNitroBackgroundTimerSpec_(std__shared_ptr_margelo__nitro__nitrobackgroundtimer__HybridNitroBackgroundTimerSpec_ cppType);
+  using std__shared_ptr_HybridNitroBackgroundTimerSpec_ = std::shared_ptr<HybridNitroBackgroundTimerSpec>;
+  std::shared_ptr<HybridNitroBackgroundTimerSpec> create_std__shared_ptr_HybridNitroBackgroundTimerSpec_(void* _Nonnull swiftUnsafePointer);
+  void* _Nonnull get_std__shared_ptr_HybridNitroBackgroundTimerSpec_(std__shared_ptr_HybridNitroBackgroundTimerSpec_ cppType);
   
-  // pragma MARK: std::weak_ptr<margelo::nitro::nitrobackgroundtimer::HybridNitroBackgroundTimerSpec>
-  using std__weak_ptr_margelo__nitro__nitrobackgroundtimer__HybridNitroBackgroundTimerSpec_ = std::weak_ptr<margelo::nitro::nitrobackgroundtimer::HybridNitroBackgroundTimerSpec>;
-  inline std__weak_ptr_margelo__nitro__nitrobackgroundtimer__HybridNitroBackgroundTimerSpec_ weakify_std__shared_ptr_margelo__nitro__nitrobackgroundtimer__HybridNitroBackgroundTimerSpec_(const std::shared_ptr<margelo::nitro::nitrobackgroundtimer::HybridNitroBackgroundTimerSpec>& strong) { return strong; }
+  // pragma MARK: std::weak_ptr<HybridNitroBackgroundTimerSpec>
+  using std__weak_ptr_HybridNitroBackgroundTimerSpec_ = std::weak_ptr<HybridNitroBackgroundTimerSpec>;
+  inline std__weak_ptr_HybridNitroBackgroundTimerSpec_ weakify_std__shared_ptr_HybridNitroBackgroundTimerSpec_(const std::shared_ptr<HybridNitroBackgroundTimerSpec>& strong) { return strong; }
   
   // pragma MARK: Result<double>
   using Result_double_ = Result<double>;

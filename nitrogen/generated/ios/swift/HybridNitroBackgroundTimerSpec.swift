@@ -23,6 +23,7 @@ public protocol HybridNitroBackgroundTimerSpec_protocol: HybridObject {
 /// See ``HybridNitroBackgroundTimerSpec``
 open class HybridNitroBackgroundTimerSpec_base {
   private weak var cxxWrapper: HybridNitroBackgroundTimerSpec_cxx? = nil
+  public init() { }
   public func getCxxWrapper() -> HybridNitroBackgroundTimerSpec_cxx {
   #if DEBUG
     guard self is HybridNitroBackgroundTimerSpec else {

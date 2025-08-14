@@ -21,18 +21,18 @@ namespace margelo::nitro::nitrobackgroundtimer::bridge::swift {
     };
   }
   
-  // pragma MARK: std::shared_ptr<margelo::nitro::nitrobackgroundtimer::HybridNitroBackgroundTimerSpec>
-  std::shared_ptr<margelo::nitro::nitrobackgroundtimer::HybridNitroBackgroundTimerSpec> create_std__shared_ptr_margelo__nitro__nitrobackgroundtimer__HybridNitroBackgroundTimerSpec_(void* _Nonnull swiftUnsafePointer) {
+  // pragma MARK: std::shared_ptr<HybridNitroBackgroundTimerSpec>
+  std::shared_ptr<HybridNitroBackgroundTimerSpec> create_std__shared_ptr_HybridNitroBackgroundTimerSpec_(void* _Nonnull swiftUnsafePointer) {
     NitroBackgroundTimer::HybridNitroBackgroundTimerSpec_cxx swiftPart = NitroBackgroundTimer::HybridNitroBackgroundTimerSpec_cxx::fromUnsafe(swiftUnsafePointer);
     return std::make_shared<margelo::nitro::nitrobackgroundtimer::HybridNitroBackgroundTimerSpecSwift>(swiftPart);
   }
-  void* _Nonnull get_std__shared_ptr_margelo__nitro__nitrobackgroundtimer__HybridNitroBackgroundTimerSpec_(std__shared_ptr_margelo__nitro__nitrobackgroundtimer__HybridNitroBackgroundTimerSpec_ cppType) {
+  void* _Nonnull get_std__shared_ptr_HybridNitroBackgroundTimerSpec_(std__shared_ptr_HybridNitroBackgroundTimerSpec_ cppType) {
     std::shared_ptr<margelo::nitro::nitrobackgroundtimer::HybridNitroBackgroundTimerSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::nitrobackgroundtimer::HybridNitroBackgroundTimerSpecSwift>(cppType);
-  #ifdef NITRO_DEBUG
+    #ifdef NITRO_DEBUG
     if (swiftWrapper == nullptr) [[unlikely]] {
       throw std::runtime_error("Class \"HybridNitroBackgroundTimerSpec\" is not implemented in Swift!");
     }
-  #endif
+    #endif
     NitroBackgroundTimer::HybridNitroBackgroundTimerSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
