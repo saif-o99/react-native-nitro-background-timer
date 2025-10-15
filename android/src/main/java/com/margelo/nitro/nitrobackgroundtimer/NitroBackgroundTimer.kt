@@ -1,39 +1,32 @@
-package com.margelo.nitro.nitrobackgroundtimer;
+package com.margelo.nitro.nitrobackgroundtimer
 
+import android.content.Context
 import android.os.Handler
 import android.os.Looper
 import android.os.PowerManager
-import com.facebook.react.bridge.*
-import com.facebook.react.modules.core.DeviceEventManagerModule
-import java.util.Timer
-import java.util.TimerTask
 import com.facebook.proguard.annotations.DoNotStrip
 import com.margelo.nitro.NitroModules
 import android.util.Log
+import java.util.Timer
+import java.util.TimerTask
 
 @DoNotStrip
 class NitroBackgroundTimer : HybridNitroBackgroundTimerSpec() {
-    private val context = NitroModules.applicationContext   ?: throw IllegalStateException("NitroModules.applicationContext is null")
+    private val context = NitroModules.applicationContext
+        ?: throw IllegalStateException("NitroModules.applicationContext is null")
     private val handler = Handler(Looper.getMainLooper())
-    private val powerManager = context.getSystemService(ReactApplicationContext.POWER_SERVICE) as PowerManager
-    private val wakeLock: PowerManager.WakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "RNBackgroundTimer")
+    private val powerManager = context.getSystemService(Context.POWER_SERVICE) as PowerManager
+    private val wakeLock: PowerManager.WakeLock = powerManager.newWakeLock(
+        PowerManager.PARTIAL_WAKE_LOCK,
+        "NitroBackgroundTimer:WakeLock"
+    )
     private val timeoutTimers = HashMap<Int, Timer>()
     private val intervalTimers = HashMap<Int, Timer>()
 
-    private val lifecycleEventListener = object : LifecycleEventListener {
-        override fun onHostResume() {}
-
-        override fun onHostPause() {}
-
-        override fun onHostDestroy() {
-            if (wakeLock.isHeld) {
-                wakeLock.release()
-            }
-        }
-    }
-
     init {
-        context.addLifecycleEventListener(lifecycleEventListener)
+        // Note: NitroModules.applicationContext is a plain Context,
+        // not ReactApplicationContext, so lifecycle listeners aren't available
+        // Consider cleanup in your module's destroy method if needed
     }
 
     private fun releaseWakeLockIfNeeded() {
@@ -112,7 +105,6 @@ class NitroBackgroundTimer : HybridNitroBackgroundTimerSpec() {
             -1.0
         }
     }
-
 
     override fun clearInterval(id: Double) {
         try {
