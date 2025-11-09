@@ -41,6 +41,7 @@ namespace margelo::nitro::nitrobackgroundtimer {
   public:
     size_t getExternalMemorySize() noexcept override;
     void dispose() noexcept override;
+    std::string toString() override;
 
   public:
     inline const jni::global_ref<JHybridNitroBackgroundTimerSpec::javaobject>& getJavaPart() const noexcept {
@@ -53,9 +54,9 @@ namespace margelo::nitro::nitrobackgroundtimer {
 
   public:
     // Methods
-    double setTimeout(double id, double duration, const std::function<void(double /* nativeId */)>& callback) override;
+    double setTimeout(double id, double duration, const std::function<void()>& callback) override;
     void clearTimeout(double id) override;
-    double setInterval(double id, double interval, const std::function<void(double /* nativeId */)>& callback) override;
+    double setInterval(double id, double interval, const std::function<void()>& callback) override;
     void clearInterval(double id) override;
 
   private:

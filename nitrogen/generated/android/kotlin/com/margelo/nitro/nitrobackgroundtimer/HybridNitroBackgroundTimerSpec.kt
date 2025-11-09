@@ -10,7 +10,7 @@ package com.margelo.nitro.nitrobackgroundtimer
 import androidx.annotation.Keep
 import com.facebook.jni.HybridData
 import com.facebook.proguard.annotations.DoNotStrip
-import com.margelo.nitro.core.*
+import com.margelo.nitro.core.HybridObject
 
 /**
  * A Kotlin class representing the NitroBackgroundTimer HybridObject.
@@ -36,15 +36,20 @@ abstract class HybridNitroBackgroundTimerSpec: HybridObject() {
     super.updateNative(hybridData)
   }
 
+  // Default implementation of `HybridObject.toString()`
+  override fun toString(): String {
+    return "[HybridObject NitroBackgroundTimer]"
+  }
+
   // Properties
   
 
   // Methods
-  abstract fun setTimeout(id: Double, duration: Double, callback: (nativeId: Double) -> Unit): Double
+  abstract fun setTimeout(id: Double, duration: Double, callback: () -> Unit): Double
   
   @DoNotStrip
   @Keep
-  private fun setTimeout_cxx(id: Double, duration: Double, callback: Func_void_double): Double {
+  private fun setTimeout_cxx(id: Double, duration: Double, callback: Func_void): Double {
     val __result = setTimeout(id, duration, callback)
     return __result
   }
@@ -53,11 +58,11 @@ abstract class HybridNitroBackgroundTimerSpec: HybridObject() {
   @Keep
   abstract fun clearTimeout(id: Double): Unit
   
-  abstract fun setInterval(id: Double, interval: Double, callback: (nativeId: Double) -> Unit): Double
+  abstract fun setInterval(id: Double, interval: Double, callback: () -> Unit): Double
   
   @DoNotStrip
   @Keep
-  private fun setInterval_cxx(id: Double, interval: Double, callback: Func_void_double): Double {
+  private fun setInterval_cxx(id: Double, interval: Double, callback: Func_void): Double {
     val __result = setInterval(id, interval, callback)
     return __result
   }
@@ -69,6 +74,6 @@ abstract class HybridNitroBackgroundTimerSpec: HybridObject() {
   private external fun initHybrid(): HybridData
 
   companion object {
-    private const val TAG = "HybridNitroBackgroundTimerSpec"
+    protected const val TAG = "HybridNitroBackgroundTimerSpec"
   }
 }

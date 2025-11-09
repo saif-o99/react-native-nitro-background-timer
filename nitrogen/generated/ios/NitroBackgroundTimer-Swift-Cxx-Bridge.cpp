@@ -13,20 +13,20 @@
 
 namespace margelo::nitro::nitrobackgroundtimer::bridge::swift {
 
-  // pragma MARK: std::function<void(double /* nativeId */)>
-  Func_void_double create_Func_void_double(void* _Nonnull swiftClosureWrapper) {
-    auto swiftClosure = NitroBackgroundTimer::Func_void_double::fromUnsafe(swiftClosureWrapper);
-    return [swiftClosure = std::move(swiftClosure)](double nativeId) mutable -> void {
-      swiftClosure.call(nativeId);
+  // pragma MARK: std::function<void()>
+  Func_void create_Func_void(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = NitroBackgroundTimer::Func_void::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)]() mutable -> void {
+      swiftClosure.call();
     };
   }
   
   // pragma MARK: std::shared_ptr<HybridNitroBackgroundTimerSpec>
-  std::shared_ptr<HybridNitroBackgroundTimerSpec> create_std__shared_ptr_HybridNitroBackgroundTimerSpec_(void* _Nonnull swiftUnsafePointer) {
+  std::shared_ptr<HybridNitroBackgroundTimerSpec> create_std__shared_ptr_HybridNitroBackgroundTimerSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     NitroBackgroundTimer::HybridNitroBackgroundTimerSpec_cxx swiftPart = NitroBackgroundTimer::HybridNitroBackgroundTimerSpec_cxx::fromUnsafe(swiftUnsafePointer);
     return std::make_shared<margelo::nitro::nitrobackgroundtimer::HybridNitroBackgroundTimerSpecSwift>(swiftPart);
   }
-  void* _Nonnull get_std__shared_ptr_HybridNitroBackgroundTimerSpec_(std__shared_ptr_HybridNitroBackgroundTimerSpec_ cppType) {
+  void* NON_NULL get_std__shared_ptr_HybridNitroBackgroundTimerSpec_(std__shared_ptr_HybridNitroBackgroundTimerSpec_ cppType) {
     std::shared_ptr<margelo::nitro::nitrobackgroundtimer::HybridNitroBackgroundTimerSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::nitrobackgroundtimer::HybridNitroBackgroundTimerSpecSwift>(cppType);
     #ifdef NITRO_DEBUG
     if (swiftWrapper == nullptr) [[unlikely]] {

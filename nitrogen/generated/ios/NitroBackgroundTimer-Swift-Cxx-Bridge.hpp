@@ -28,26 +28,26 @@ namespace NitroBackgroundTimer { class HybridNitroBackgroundTimerSpec_cxx; }
  */
 namespace margelo::nitro::nitrobackgroundtimer::bridge::swift {
 
-  // pragma MARK: std::function<void(double /* nativeId */)>
+  // pragma MARK: std::function<void()>
   /**
-   * Specialized version of `std::function<void(double)>`.
+   * Specialized version of `std::function<void()>`.
    */
-  using Func_void_double = std::function<void(double /* nativeId */)>;
+  using Func_void = std::function<void()>;
   /**
-   * Wrapper class for a `std::function<void(double / * nativeId * /)>`, this can be used from Swift.
+   * Wrapper class for a `std::function<void()>`, this can be used from Swift.
    */
-  class Func_void_double_Wrapper final {
+  class Func_void_Wrapper final {
   public:
-    explicit Func_void_double_Wrapper(std::function<void(double /* nativeId */)>&& func): _function(std::make_unique<std::function<void(double /* nativeId */)>>(std::move(func))) {}
-    inline void call(double nativeId) const {
-      _function->operator()(nativeId);
+    explicit Func_void_Wrapper(std::function<void()>&& func): _function(std::make_unique<std::function<void()>>(std::move(func))) {}
+    inline void call() const noexcept {
+      _function->operator()();
     }
   private:
-    std::unique_ptr<std::function<void(double /* nativeId */)>> _function;
+    std::unique_ptr<std::function<void()>> _function;
   } SWIFT_NONCOPYABLE;
-  Func_void_double create_Func_void_double(void* _Nonnull swiftClosureWrapper);
-  inline Func_void_double_Wrapper wrap_Func_void_double(Func_void_double value) {
-    return Func_void_double_Wrapper(std::move(value));
+  Func_void create_Func_void(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_Wrapper wrap_Func_void(Func_void value) noexcept {
+    return Func_void_Wrapper(std::move(value));
   }
   
   // pragma MARK: std::shared_ptr<HybridNitroBackgroundTimerSpec>
@@ -55,28 +55,28 @@ namespace margelo::nitro::nitrobackgroundtimer::bridge::swift {
    * Specialized version of `std::shared_ptr<HybridNitroBackgroundTimerSpec>`.
    */
   using std__shared_ptr_HybridNitroBackgroundTimerSpec_ = std::shared_ptr<HybridNitroBackgroundTimerSpec>;
-  std::shared_ptr<HybridNitroBackgroundTimerSpec> create_std__shared_ptr_HybridNitroBackgroundTimerSpec_(void* _Nonnull swiftUnsafePointer);
-  void* _Nonnull get_std__shared_ptr_HybridNitroBackgroundTimerSpec_(std__shared_ptr_HybridNitroBackgroundTimerSpec_ cppType);
+  std::shared_ptr<HybridNitroBackgroundTimerSpec> create_std__shared_ptr_HybridNitroBackgroundTimerSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridNitroBackgroundTimerSpec_(std__shared_ptr_HybridNitroBackgroundTimerSpec_ cppType);
   
   // pragma MARK: std::weak_ptr<HybridNitroBackgroundTimerSpec>
   using std__weak_ptr_HybridNitroBackgroundTimerSpec_ = std::weak_ptr<HybridNitroBackgroundTimerSpec>;
-  inline std__weak_ptr_HybridNitroBackgroundTimerSpec_ weakify_std__shared_ptr_HybridNitroBackgroundTimerSpec_(const std::shared_ptr<HybridNitroBackgroundTimerSpec>& strong) { return strong; }
+  inline std__weak_ptr_HybridNitroBackgroundTimerSpec_ weakify_std__shared_ptr_HybridNitroBackgroundTimerSpec_(const std::shared_ptr<HybridNitroBackgroundTimerSpec>& strong) noexcept { return strong; }
   
   // pragma MARK: Result<double>
   using Result_double_ = Result<double>;
-  inline Result_double_ create_Result_double_(double value) {
+  inline Result_double_ create_Result_double_(double value) noexcept {
     return Result<double>::withValue(std::move(value));
   }
-  inline Result_double_ create_Result_double_(const std::exception_ptr& error) {
+  inline Result_double_ create_Result_double_(const std::exception_ptr& error) noexcept {
     return Result<double>::withError(error);
   }
   
   // pragma MARK: Result<void>
   using Result_void_ = Result<void>;
-  inline Result_void_ create_Result_void_() {
+  inline Result_void_ create_Result_void_() noexcept {
     return Result<void>::withValue();
   }
-  inline Result_void_ create_Result_void_(const std::exception_ptr& error) {
+  inline Result_void_ create_Result_void_(const std::exception_ptr& error) noexcept {
     return Result<void>::withError(error);
   }
 

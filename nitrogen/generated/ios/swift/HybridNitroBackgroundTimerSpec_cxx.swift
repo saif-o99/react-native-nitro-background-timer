@@ -76,7 +76,7 @@ open class HybridNitroBackgroundTimerSpec_cxx {
    */
   public func getCxxPart() -> bridge.std__shared_ptr_HybridNitroBackgroundTimerSpec_ {
     let cachedCxxPart = self.__cxxPart.lock()
-    if cachedCxxPart.__convertToBool() {
+    if Bool(fromCxx: cachedCxxPart) {
       return cachedCxxPart
     } else {
       let newCxxPart = bridge.create_std__shared_ptr_HybridNitroBackgroundTimerSpec_(self.toUnsafe())
@@ -105,17 +105,25 @@ open class HybridNitroBackgroundTimerSpec_cxx {
     self.__implementation.dispose()
   }
 
+  /**
+   * Call toString() on the Swift class.
+   */
+  @inline(__always)
+  public func toString() -> String {
+    return self.__implementation.toString()
+  }
+
   // Properties
   
 
   // Methods
   @inline(__always)
-  public final func setTimeout(id: Double, duration: Double, callback: bridge.Func_void_double) -> bridge.Result_double_ {
+  public final func setTimeout(id: Double, duration: Double, callback: bridge.Func_void) -> bridge.Result_double_ {
     do {
-      let __result = try self.__implementation.setTimeout(id: id, duration: duration, callback: { () -> (Double) -> Void in
-        let __wrappedFunction = bridge.wrap_Func_void_double(callback)
-        return { (__nativeId: Double) -> Void in
-          __wrappedFunction.call(__nativeId)
+      let __result = try self.__implementation.setTimeout(id: id, duration: duration, callback: { () -> () -> Void in
+        let __wrappedFunction = bridge.wrap_Func_void(callback)
+        return { () -> Void in
+          __wrappedFunction.call()
         }
       }())
       let __resultCpp = __result
@@ -138,12 +146,12 @@ open class HybridNitroBackgroundTimerSpec_cxx {
   }
   
   @inline(__always)
-  public final func setInterval(id: Double, interval: Double, callback: bridge.Func_void_double) -> bridge.Result_double_ {
+  public final func setInterval(id: Double, interval: Double, callback: bridge.Func_void) -> bridge.Result_double_ {
     do {
-      let __result = try self.__implementation.setInterval(id: id, interval: interval, callback: { () -> (Double) -> Void in
-        let __wrappedFunction = bridge.wrap_Func_void_double(callback)
-        return { (__nativeId: Double) -> Void in
-          __wrappedFunction.call(__nativeId)
+      let __result = try self.__implementation.setInterval(id: id, interval: interval, callback: { () -> () -> Void in
+        let __wrappedFunction = bridge.wrap_Func_void(callback)
+        return { () -> Void in
+          __wrappedFunction.call()
         }
       }())
       let __resultCpp = __result
