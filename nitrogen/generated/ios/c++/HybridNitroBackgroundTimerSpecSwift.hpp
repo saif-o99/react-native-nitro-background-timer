@@ -60,7 +60,7 @@ namespace margelo::nitro::nitrobackgroundtimer {
 
   public:
     // Methods
-    inline double setTimeout(double id, double duration, const std::function<void()>& callback) override {
+    inline double setTimeout(double id, double duration, const std::function<void(double /* nativeId */)>& callback) override {
       auto __result = _swiftPart.setTimeout(std::forward<decltype(id)>(id), std::forward<decltype(duration)>(duration), callback);
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
@@ -74,7 +74,7 @@ namespace margelo::nitro::nitrobackgroundtimer {
         std::rethrow_exception(__result.error());
       }
     }
-    inline double setInterval(double id, double interval, const std::function<void()>& callback) override {
+    inline double setInterval(double id, double interval, const std::function<void(double /* nativeId */)>& callback) override {
       auto __result = _swiftPart.setInterval(std::forward<decltype(id)>(id), std::forward<decltype(interval)>(interval), callback);
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());

@@ -16,7 +16,7 @@
 #include <NitroModules/HybridObjectRegistry.hpp>
 
 #include "JHybridNitroBackgroundTimerSpec.hpp"
-#include "JFunc_void.hpp"
+#include "JFunc_void_double.hpp"
 #include <NitroModules/DefaultConstructableObject.hpp>
 
 namespace margelo::nitro::nitrobackgroundtimer {
@@ -29,7 +29,7 @@ int initialize(JavaVM* vm) {
   return facebook::jni::initialize(vm, [] {
     // Register native JNI methods
     margelo::nitro::nitrobackgroundtimer::JHybridNitroBackgroundTimerSpec::registerNatives();
-    margelo::nitro::nitrobackgroundtimer::JFunc_void_cxx::registerNatives();
+    margelo::nitro::nitrobackgroundtimer::JFunc_void_double_cxx::registerNatives();
 
     // Register Nitro Hybrid Objects
     HybridObjectRegistry::registerHybridObjectConstructor(

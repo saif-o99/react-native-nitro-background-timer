@@ -28,26 +28,26 @@ namespace NitroBackgroundTimer { class HybridNitroBackgroundTimerSpec_cxx; }
  */
 namespace margelo::nitro::nitrobackgroundtimer::bridge::swift {
 
-  // pragma MARK: std::function<void()>
+  // pragma MARK: std::function<void(double /* nativeId */)>
   /**
-   * Specialized version of `std::function<void()>`.
+   * Specialized version of `std::function<void(double)>`.
    */
-  using Func_void = std::function<void()>;
+  using Func_void_double = std::function<void(double /* nativeId */)>;
   /**
-   * Wrapper class for a `std::function<void()>`, this can be used from Swift.
+   * Wrapper class for a `std::function<void(double / * nativeId * /)>`, this can be used from Swift.
    */
-  class Func_void_Wrapper final {
+  class Func_void_double_Wrapper final {
   public:
-    explicit Func_void_Wrapper(std::function<void()>&& func): _function(std::make_unique<std::function<void()>>(std::move(func))) {}
-    inline void call() const noexcept {
-      _function->operator()();
+    explicit Func_void_double_Wrapper(std::function<void(double /* nativeId */)>&& func): _function(std::make_unique<std::function<void(double /* nativeId */)>>(std::move(func))) {}
+    inline void call(double nativeId) const noexcept {
+      _function->operator()(nativeId);
     }
   private:
-    std::unique_ptr<std::function<void()>> _function;
+    std::unique_ptr<std::function<void(double /* nativeId */)>> _function;
   } SWIFT_NONCOPYABLE;
-  Func_void create_Func_void(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_Wrapper wrap_Func_void(Func_void value) noexcept {
-    return Func_void_Wrapper(std::move(value));
+  Func_void_double create_Func_void_double(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_double_Wrapper wrap_Func_void_double(Func_void_double value) noexcept {
+    return Func_void_double_Wrapper(std::move(value));
   }
   
   // pragma MARK: std::shared_ptr<HybridNitroBackgroundTimerSpec>
